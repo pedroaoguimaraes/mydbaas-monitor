@@ -41,7 +41,7 @@ public class MonitoringCoordinator {
 		} catch (JSchException e) {
 			e.printStackTrace();
 		}
-		if (session.isConnected()) {
+		if (session != null && session.isConnected()) {
 			return true;
 		}
 		return false;		
