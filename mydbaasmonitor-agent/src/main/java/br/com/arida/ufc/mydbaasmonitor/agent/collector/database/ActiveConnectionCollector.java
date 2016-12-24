@@ -46,8 +46,6 @@ public class ActiveConnectionCollector extends AbstractCollector<ActiveConnectio
 			while (resultSet != null && resultSet.next()) {
 				this.metric.setActiveConnectionAmount(resultSet.getInt("connections"));
             }
-			resultSet.close();
-			connection.close();
 			break;
 		case "database":
 			params = databaseConnection.getConnection(null, Integer.valueOf((String) args[1]));
@@ -61,9 +59,13 @@ public class ActiveConnectionCollector extends AbstractCollector<ActiveConnectio
 			while (resultSet != null && resultSet.next()) {
 				this.metric.setActiveConnectionAmount(resultSet.getInt("connections"));
             }
-			resultSet.close();
-			connection.close();
 			break;
+		}
+		if(resultSet != null){
+			resultSet.close();
+		}
+		if(connection != null){
+			connection.close();
 		}
 	}
 
