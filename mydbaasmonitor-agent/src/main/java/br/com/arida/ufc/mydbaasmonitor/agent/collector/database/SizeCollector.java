@@ -47,8 +47,6 @@ public class SizeCollector extends AbstractCollector<SizeMetric> {
 			while (resultSet != null && resultSet.next()) {
 				this.metric.setSizeUsed(Math.round(resultSet.getDouble("size")*100.0)/100.0);
             }
-			resultSet.close();
-			connection.close();
 			break;
 		case "database":
 			params = databaseConnection.getConnection(null, Integer.valueOf((String) args[1]));
@@ -62,9 +60,13 @@ public class SizeCollector extends AbstractCollector<SizeMetric> {
 			while (resultSet != null && resultSet.next()) {
 				this.metric.setSizeUsed(Math.round(resultSet.getDouble("size")*100.0)/100.0);
             }
-			resultSet.close();
-			connection.close();
 			break;
+		}
+		if(resultSet != null){
+			resultSet.close();
+		}
+		if(connection != null){
+			connection.close();
 		}
 	}
 
