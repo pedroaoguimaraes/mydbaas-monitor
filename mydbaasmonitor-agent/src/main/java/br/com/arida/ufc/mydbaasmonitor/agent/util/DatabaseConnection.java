@@ -125,6 +125,7 @@ public class DatabaseConnection {
 			}
 		}		
 		resultSet = preparedStatement.executeQuery();
+		preparedStatement.close();
 		return resultSet;
 	}
 
