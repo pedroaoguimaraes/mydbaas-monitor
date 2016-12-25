@@ -76,8 +76,12 @@ public class NetworkTrafficCollector extends AbstractCollector<NetworkTrafficMet
 	        }
 		}
 		//Close the connection and resultset
-		resultSet.close();
-		connection.close();		
+		if(resultSet != null){
+			resultSet.close();
+		}
+		if(connection != null){
+			connection.close();		
+		}
 	}
 
 	@Override
