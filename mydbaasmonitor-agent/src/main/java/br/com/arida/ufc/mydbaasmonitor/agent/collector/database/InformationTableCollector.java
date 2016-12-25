@@ -60,8 +60,12 @@ public class InformationTableCollector extends AbstractCollector<InformationTabl
 			informationTable.setInformationTableTotalSize(resultSet.getDouble("total_size"));
 			this.informationTableMetrics.add(informationTable);
         }
-		resultSet.close();
-		connection.close();
+		if(resultSet != null){
+			resultSet.close();
+		}
+		if(connection != null){
+			connection.close();
+		}
 	}
 
 	@Override
