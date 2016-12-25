@@ -205,7 +205,7 @@ public class AgentController {
 		}
 		
 		//Check what type of resource and makes the redirection - case ok
-		if (resourceType.equals("machine")) {
+		if (resourceType.equals("machine") && machine != null) {
 			//Set monitoring status to false
 			machine.setStatus(false);
 			virtualMachineRepository.updateStatus(machine);
@@ -215,7 +215,7 @@ public class AgentController {
 				databaseRepository.updateAllStatus(false, dbms.getId());
 			}
 			result.redirectTo(VirtualMachineController.class).view(machine);
-		} else if (resourceType.equals("host")) {
+		} else if (resourceType.equals("host") && host != null) {
 			//Set monitoring status to false
 			host.setStatus(false);
 			hostRepository.update(host);
