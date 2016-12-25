@@ -106,8 +106,12 @@ public class StatementDDLCollector extends AbstractCollector<StatementDDLMetric>
 	        }
 		}
 		//Close the connection and resultset
-		resultSet.close();
-		connection.close();		
+		if(resultSet != null){
+			resultSet.close();
+		}
+		if(connection != null){
+			connection.close();		
+		}
 	}
 
 	@Override
