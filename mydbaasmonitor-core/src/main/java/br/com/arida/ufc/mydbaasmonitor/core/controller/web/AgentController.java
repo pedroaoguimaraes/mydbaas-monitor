@@ -128,7 +128,7 @@ public class AgentController {
 					}				
 				}				
 				result.redirectTo(VirtualMachineController.class).view(machine);
-			} else if (resourceType.equals("host")) {
+			} else if (resourceType.equals("host") && host != null) {
 				//Set monitoring status to true
 				host.setStatus(true);
 				hostRepository.update(host);
@@ -157,7 +157,7 @@ public class AgentController {
 					}				
 				}	
 				result.redirectTo(VirtualMachineController.class).view(machine);
-			} else if (resourceType.equals("host")) {
+			} else if (resourceType.equals("host") && host != null) {
 				//Set monitoring status to true
 				host.setStatus(false);
 				hostRepository.update(host);
