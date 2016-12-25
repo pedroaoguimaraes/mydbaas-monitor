@@ -109,7 +109,7 @@ public class AgentController {
 			result.include("status", true)
 				  .include("agentNotice", i18n("agent.ok"));
 			//Check what type of resource and makes the redirection - case ok
-			if (resourceType.equals("machine")) {
+			if (resourceType.equals("machine") && machine != null) {
 				//Set monitoring status to true
 				machine.setStatus(true);
 				virtualMachineRepository.updateStatus(machine);
@@ -138,7 +138,7 @@ public class AgentController {
 			result.include("status", false)
 			      .include("agentNotice", i18n("agent.error"));
 			//Check what type of resource and makes the redirection - case error
-			if (resourceType.equals("machine")) {
+			if (resourceType.equals("machine") && machine != null) {
 				//Set monitoring status to false
 				machine.setStatus(false);
 				virtualMachineRepository.updateStatus(machine);
