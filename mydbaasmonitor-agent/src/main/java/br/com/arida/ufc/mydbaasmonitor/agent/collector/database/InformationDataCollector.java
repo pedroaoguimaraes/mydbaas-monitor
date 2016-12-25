@@ -53,8 +53,12 @@ public class InformationDataCollector extends AbstractCollector<InformationDataM
 			this.metric.setInformationDataViews(resultSet.getInt("amount_views"));
 			this.metric.setInformationDataRoutines(resultSet.getInt("amount_routines"));
         }
-		resultSet.close();
-		connection.close();
+		if(resultSet != null){
+			resultSet.close();
+		}
+		if(connection != null){
+			connection.close();
+		}
 	}
 
 	@Override
