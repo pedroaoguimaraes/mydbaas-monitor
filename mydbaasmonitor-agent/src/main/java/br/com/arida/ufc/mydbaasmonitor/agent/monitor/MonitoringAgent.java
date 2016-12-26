@@ -86,8 +86,8 @@ public class MonitoringAgent {
 			Constructor constructor = collectorClass.getConstructors()[0];
 			Object objectCollector = constructor.newInstance(new Object[] {identifier, type});
 			//The collector is scheduled and initiated
-			Timer timer = new Timer();			
-			timer.scheduleAtFixedRate((TimerTask) objectCollector, 0, 1*cyclo*1000);
+			Timer timer = new Timer();	
+			timer.scheduleAtFixedRate((TimerTask) objectCollector, 0, 1L*cyclo*1000);
 			//Save the timer
 			this.timers.add(timer);
 			//Save the collector
