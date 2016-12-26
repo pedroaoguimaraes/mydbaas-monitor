@@ -58,7 +58,7 @@ public abstract class AbstractPool<T extends AbstractEntity> {
 		for (Method method : getResourceMethods(resource)) {
 			if (!method.getName().equals("getId")
 				&& method.getName().startsWith("get")
-				&& !method.getReturnType().getName().equals("java.util.List")) {
+				&& !(method.getReturnType() == List.class)) {
 				Object result = method.invoke(resource, null);
 				if (result == null) {
 					return false;
@@ -83,7 +83,7 @@ public abstract class AbstractPool<T extends AbstractEntity> {
 		//Creates HTTP request parameters from the getters methods of the resource
 		for (Method method : getResourceMethods(resource)) {
 			//Checks if the method is a getter and is not of List type
-			if (method.getName().startsWith("get") && !method.getReturnType().getName().equals("java.util.List")) {
+			if (method.getName().startsWith("get") && !(method.getReturnType() == List.class)) {
 				//Build the parameter name
 				String paramName = method.getName().substring(3);
 				paramName = paramName.substring(0, 1).toLowerCase().concat(paramName.substring(1));
