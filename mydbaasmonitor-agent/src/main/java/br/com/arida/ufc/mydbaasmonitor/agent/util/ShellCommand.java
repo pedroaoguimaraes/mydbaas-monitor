@@ -50,7 +50,7 @@ public class ShellCommand {
             String string = "";
             int l = 0;
             while ((string = stdInput.readLine()) != null) {
-                if (l == 0 && string != null) {
+                if (l == 0) {
                     allDomainsPid.add(Integer.parseInt(string.trim()));
                 }
                 l++;
