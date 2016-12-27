@@ -14,6 +14,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 /**
  * @author David Araújo - @araujodavid
@@ -22,6 +23,7 @@ import org.apache.http.util.EntityUtils;
  */
 public class NetworkTrafficCollector extends AbstractCollector<NetworkTrafficMetric> {
 
+	final static Logger logger = Logger.getLogger(NetworkTrafficCollector.class);
 	private boolean firstCycle;
 	private int bytesReceived;
 	private int bytesSent;
@@ -96,29 +98,28 @@ public class NetworkTrafficCollector extends AbstractCollector<NetworkTrafficMet
 				try {
 					this.loadMetric(new Object[] {dbms});
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SQLException e) {
-					System.out.println("Problem loading the NetworkTraffic metric value (DBMS)");
-					e.printStackTrace();
+					logger.error("Problem loading the NetworkTraffic metric value (DBMS)", e);
 				}
 				
 				//Creates request parameters
 				try {
 					params = this.loadRequestParams(new Date(), Integer.parseInt(dbms), 0);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (InvocationTargetException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SecurityException e) {
-					e.printStackTrace();
+					logger.error(e);
 				}
 				
 				//Sends the collected metric
@@ -131,9 +132,9 @@ public class NetworkTrafficCollector extends AbstractCollector<NetworkTrafficMet
 					}
 					EntityUtils.consume(response.getEntity());
 				} catch (ClientProtocolException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e);
 				}
 			}
 		}
