@@ -8,6 +8,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.hyperic.sigar.FileSystem;
 import org.hyperic.sigar.FileSystemUsage;
 import org.hyperic.sigar.Sigar;
@@ -22,6 +23,8 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.agent.entity.DiskMetric;
  */
 public class DiskCollector extends AbstractCollector<DiskMetric> {
 
+	private static final Logger logger = Logger.getLogger(DiskCollector.class);
+	
 	public DiskCollector(int identifier, String type) {
 		super(identifier, type);
 	}
@@ -67,8 +70,7 @@ public class DiskCollector extends AbstractCollector<DiskMetric> {
 		try {
 			this.loadMetric(new Object[] {sigar});
 		} catch (SigarException e2) {
-			System.out.println("Problem loading the Disk metric values (Sigar)");
-			e2.printStackTrace();
+			logger.error("Problem loading the Disk metric values (Sigar)", e2);
 		}	
 		
 		//Setting the parameters of the POST request
@@ -76,20 +78,15 @@ public class DiskCollector extends AbstractCollector<DiskMetric> {
 		try {
 			params = this.loadRequestParams(new Date(), 0, 0);
 		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (IllegalArgumentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (InvocationTargetException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (NoSuchMethodException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		}
 		
 		HttpResponse response;		
@@ -102,11 +99,9 @@ public class DiskCollector extends AbstractCollector<DiskMetric> {
 			}
 			EntityUtils.consume(response.getEntity());
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		//Release any native resources associated with this sigar instance
