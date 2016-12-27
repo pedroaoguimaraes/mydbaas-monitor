@@ -9,6 +9,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -24,7 +25,9 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.VirtualM
  * @since April 1, 2013
  */
 public class DBaaSPool extends AbstractPool<DBaaS> {
-
+	
+	private static final Logger logger = Logger.getLogger(DBaaSPool.class);
+	
 	@Override
 	public boolean save(DBaaS resource) {
 		List<NameValuePair> params = null;
@@ -32,15 +35,15 @@ public class DBaaSPool extends AbstractPool<DBaaS> {
 		try {
 			params = loadRequestParams(resource);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		try {
@@ -50,9 +53,9 @@ public class DBaaSPool extends AbstractPool<DBaaS> {
 				return true;
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return false;
 	}
@@ -64,15 +67,15 @@ public class DBaaSPool extends AbstractPool<DBaaS> {
 		try {
 			params = loadRequestParams(resource);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		try {
@@ -82,9 +85,9 @@ public class DBaaSPool extends AbstractPool<DBaaS> {
 				return true;
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return false;
 	}
@@ -103,9 +106,9 @@ public class DBaaSPool extends AbstractPool<DBaaS> {
 			response = SendResquest.postRequest(this.getClient().getServerUrl()+"/resource/hosts", params);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		Gson gson = new Gson();
 		List<Host> hosts = gson.fromJson(json, new TypeToken<List<Host>>(){}.getType());
@@ -127,9 +130,9 @@ public class DBaaSPool extends AbstractPool<DBaaS> {
 			response = SendResquest.postRequest(this.getClient().getServerUrl()+"/resource/machines", params);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		Gson gson = new Gson();
 		List<VirtualMachine> virtualMachines = gson.fromJson(json, new TypeToken<List<VirtualMachine>>(){}.getType());
