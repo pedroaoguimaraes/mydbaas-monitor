@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class NetworkTrafficCollector extends AbstractCollector<NetworkTrafficMetric> {
 
-	final static Logger logger = Logger.getLogger(NetworkTrafficCollector.class);
+	private final static Logger logger = Logger.getLogger(NetworkTrafficCollector.class);
 	private boolean firstCycle;
 	private int bytesReceived;
 	private int bytesSent;

@@ -25,7 +25,7 @@ import org.apache.log4j.Logger;
  */
 public class InformationTableCollector extends AbstractCollector<InformationTableMetric> {
 
-	final static Logger logger = Logger.getLogger(InformationDataCollector.class);
+	private final static Logger logger = Logger.getLogger(InformationDataCollector.class);
 	private List<InformationTable> informationTableMetrics;
 	
 	public InformationTableCollector(int identifier, String type) {

@@ -23,7 +23,7 @@ import org.apache.log4j.Logger;
  */
 public class InformationDataCollector extends AbstractCollector<InformationDataMetric> {
 
-	final static Logger logger = Logger.getLogger(InformationDataCollector.class);
+	private final static Logger logger = Logger.getLogger(InformationDataCollector.class);
 	
 	public InformationDataCollector(int identifier, String type) {
 		super(identifier, type);
