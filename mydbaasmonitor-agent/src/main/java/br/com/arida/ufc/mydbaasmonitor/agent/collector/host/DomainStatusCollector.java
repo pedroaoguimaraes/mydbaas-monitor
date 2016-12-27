@@ -66,15 +66,15 @@ public class DomainStatusCollector extends AbstractCollector<DomainStatusMetric>
 		try {
 			params = this.loadRequestParams(new Date(), domainStatusMetrics, 0, 0);
 		} catch (IllegalAccessException e1) {
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (IllegalArgumentException e1) {
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (InvocationTargetException e1) {
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (NoSuchMethodException e1) {
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (SecurityException e1) {
-			e1.printStackTrace();
+			logger.error(e1);
 		}
 		
 		HttpResponse response;		
