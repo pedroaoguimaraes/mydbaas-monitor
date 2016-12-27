@@ -11,6 +11,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.collector.common.AbstractCollector;
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.entity.SizeMetric;
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.util.DatabaseConnection;
@@ -22,6 +24,7 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.agent.util.DatabaseConnection;
  */
 public class SizeCollector extends AbstractCollector<SizeMetric> {
 
+	private static final Logger logger = Logger.getLogger(SizeCollector.class);
 	public SizeCollector(int identifier, String type) {
 		super(identifier, type);
 	}
@@ -84,33 +87,25 @@ public class SizeCollector extends AbstractCollector<SizeMetric> {
 				try {
 					this.loadMetric(args);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SQLException e) {
-					System.out.println("Problem loading the ActiveConnections metric value (DBMS)");
-					e.printStackTrace();
+					logger.error("Problem loading the ActiveConnections metric value (DBMS)", e);
 				}
 				
 				try {
 					params = this.loadRequestParams(new Date(), Integer.parseInt(dbms), 0);
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (NoSuchMethodException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 				
 				try {
@@ -122,11 +117,9 @@ public class SizeCollector extends AbstractCollector<SizeMetric> {
 					}
 					EntityUtils.consume(response.getEntity());
 				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 			}
 		}
@@ -138,33 +131,25 @@ public class SizeCollector extends AbstractCollector<SizeMetric> {
 				try {
 					this.loadMetric(args);
 				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SQLException e) {
-					System.out.println("Problem loading the ActiveConnections metric value (DBMS)");
-					e.printStackTrace();
+					logger.error("Problem loading the ActiveConnections metric value (DBMS)", e);
 				}
 				
 				try {
 					params = this.loadRequestParams(new Date(), 0, Integer.parseInt(database));
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (NoSuchMethodException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 				
 				try {
@@ -176,11 +161,9 @@ public class SizeCollector extends AbstractCollector<SizeMetric> {
 					}
 					EntityUtils.consume(response.getEntity());
 				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 			}
 		}		
