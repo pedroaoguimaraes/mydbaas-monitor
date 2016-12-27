@@ -8,6 +8,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.collector.common.AbstractCollector;
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.entity.ProcessStatusMetric;
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.util.DatabaseConnection;
@@ -21,6 +23,7 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBMS;
  */
 public class ProcessStatusCollector extends AbstractCollector<ProcessStatusMetric> {
 
+	private static final Logger logger = Logger.getLogger(ProcessStatusCollector.class);
 	public ProcessStatusCollector(int identifier, String type) {
 		super(identifier, type);
 	}
@@ -58,32 +61,25 @@ public class ProcessStatusCollector extends AbstractCollector<ProcessStatusMetri
 				try {
 					this.loadMetric(new Object[] {Integer.parseInt(dbms)});
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (Exception e) {
-					System.out.println("Problem loading the ProcessStatus metric value (DBMS)");
-					e.printStackTrace();
+					logger.error("Problem loading the ProcessStatus metric value (DBMS)", e);
 				}
 				
 				try {
 					params = this.loadRequestParams(new Date(), Integer.parseInt(dbms), 0);
 				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (NoSuchMethodException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 				
 				try {
@@ -95,11 +91,9 @@ public class ProcessStatusCollector extends AbstractCollector<ProcessStatusMetri
 					}
 					EntityUtils.consume(response.getEntity());
 				} catch (ClientProtocolException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}
 			}
 		}
