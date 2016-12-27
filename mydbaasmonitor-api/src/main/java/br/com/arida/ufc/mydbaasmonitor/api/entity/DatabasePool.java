@@ -8,6 +8,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
 import main.java.br.com.arida.ufc.mydbaasmonitor.api.entity.common.AbstractPool;
 import main.java.br.com.arida.ufc.mydbaasmonitor.api.util.SendResquest;
@@ -20,6 +21,7 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.Database
  */
 public class DatabasePool extends AbstractPool<Database> {
 
+	private static final Logger logger = Logger.getLogger(DatabasePool.class);
 	@Override
 	public boolean save(Database resource) {
 		List<NameValuePair> params = null;
@@ -27,15 +29,15 @@ public class DatabasePool extends AbstractPool<Database> {
 		try {
 			params = loadRequestParams(resource);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		try {
@@ -45,9 +47,9 @@ public class DatabasePool extends AbstractPool<Database> {
 				return true;
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return false;
 	}
@@ -59,15 +61,15 @@ public class DatabasePool extends AbstractPool<Database> {
 		try {
 			params = loadRequestParams(resource);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		try {
@@ -77,9 +79,9 @@ public class DatabasePool extends AbstractPool<Database> {
 				return true;
 			}
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return false;
 	}
