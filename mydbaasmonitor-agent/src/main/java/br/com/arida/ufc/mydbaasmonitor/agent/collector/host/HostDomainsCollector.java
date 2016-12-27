@@ -8,6 +8,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.libvirt.Connect;
 import org.libvirt.LibvirtException;
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.collector.common.AbstractCollector;
@@ -20,6 +21,8 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.agent.entity.HostDomainsMetric;
  */
 public class HostDomainsCollector extends AbstractCollector<HostDomainsMetric> {
 
+	private static final Logger logger = Logger.getLogger(HostDomainsCollector.class);
+	
 	public HostDomainsCollector(int identifier, String type) {
 		super(identifier, type);
 	}
@@ -39,8 +42,7 @@ public class HostDomainsCollector extends AbstractCollector<HostDomainsMetric> {
 			connect = new Connect(null);
 			this.loadMetric(new Object[] {connect});
 		} catch (LibvirtException e) {
-			System.out.println("Problem loading the HostDomains metric values (Libvirt)");
-			e.printStackTrace();
+			logger.error("Problem loading the HostDomains metric values (Libvirt)", e);
 		}
 		
 		//Setting the parameters of the POST request
@@ -48,20 +50,15 @@ public class HostDomainsCollector extends AbstractCollector<HostDomainsMetric> {
 		try {
 			params = this.loadRequestParams(new Date(), 0, 0);
 		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (IllegalArgumentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (InvocationTargetException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (NoSuchMethodException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		}
 		
 		HttpResponse response;		
@@ -74,19 +71,16 @@ public class HostDomainsCollector extends AbstractCollector<HostDomainsMetric> {
 			}
 			EntityUtils.consume(response.getEntity());
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		//Release any native resources associated with this sigar instance
 		try {
 			connect.close();
 		} catch (LibvirtException e) {
-			System.out.println("Problem to close the Libvirt connection.");
-			e.printStackTrace();
+			logger.error("Problem to close the Libvirt connection.", e);
 		}
 	}
 
