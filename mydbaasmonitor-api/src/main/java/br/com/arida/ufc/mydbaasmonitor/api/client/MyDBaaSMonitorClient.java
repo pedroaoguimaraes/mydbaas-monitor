@@ -7,6 +7,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import main.java.br.com.arida.ufc.mydbaasmonitor.api.entity.DBMSPool;
@@ -29,6 +31,7 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.VirtualM
  */
 public class MyDBaaSMonitorClient {
 
+	private static final Logger logger = Logger.getLogger(MyDBaaSMonitorClient.class);
 	private String serverUrl;
 	
 	/**
@@ -48,9 +51,9 @@ public class MyDBaaSMonitorClient {
 		try {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/connection", null);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		if (response != null && response.getStatusLine().getStatusCode() != 200) {
 			return true;
@@ -72,9 +75,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/metrics", params);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Gson gson = new Gson();
 		List<String> metrics = gson.fromJson(json, new TypeToken<List<String>>(){}.getType());
@@ -88,9 +91,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/dbaas", null);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Gson gson = new Gson();
 		DBaaSPool pool = gson.fromJson(json, DBaaSPool.class);
@@ -105,9 +108,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/hosts", null);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Gson gson = new Gson();
 		HostPool pool = gson.fromJson(json, HostPool.class);
@@ -122,9 +125,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/machines", null);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Gson gson = new Gson();
 		VirtualMachinePool pool = gson.fromJson(json, VirtualMachinePool.class);
@@ -139,9 +142,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/dbmss", null);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Gson gson = new Gson();
 		DBMSPool pool = gson.fromJson(json, DBMSPool.class);
@@ -156,9 +159,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/databases", null);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Gson gson = new Gson();
 		DatabasePool pool = gson.fromJson(json, DatabasePool.class);
@@ -176,9 +179,9 @@ public class MyDBaaSMonitorClient {
 			response = SendResquest.postRequest(this.serverUrl+"/resource/find", params);
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		Gson gson = new Gson();
 		switch (resourceType) {
