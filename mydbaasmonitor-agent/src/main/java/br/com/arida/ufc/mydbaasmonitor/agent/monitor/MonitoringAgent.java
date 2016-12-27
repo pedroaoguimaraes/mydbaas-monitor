@@ -10,6 +10,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import org.apache.log4j.Logger;
+
 import com.sun.xml.internal.ws.util.StringUtils;
 
 import main.java.br.com.arida.ufc.mydbaasmonitor.agent.collector.host.HostInfoCollector;
@@ -28,6 +31,7 @@ public class MonitoringAgent {
 	
 	private List<Timer> timers;
 	private List<Object> collectors;
+	private static final Logger logger = Logger.getLogger(MonitoringAgent.class);
 	
 	/**
 	 * Method to check the metrics enabled in the config file and creates the objects
@@ -101,11 +105,9 @@ public class MonitoringAgent {
 			parser.loadContextFile("/home/david/Workspace MyDBaaSMonitor/mydbaasmonitor-agent/src/resources/host.conf");
 			//parser.loadContextFile(String.valueOf(args[0])+"/MyDBaaSMonitor/context.conf");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		//Loads the general information of the monitoring agent
 		parser.loadProperties();
@@ -138,26 +140,19 @@ public class MonitoringAgent {
 			//Create the collectos
 			agent.startCollectors(enabledMetrics, parser.getIdentifier(), parser.getType());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		
 //		//Monitoring CPU
