@@ -13,6 +13,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
+
 import java.sql.Connection;
 
 /**
@@ -22,6 +24,7 @@ import java.sql.Connection;
  */
 public class StatementTCLCollector extends AbstractCollector<StatementTCLMetric> {
 	
+	private static final Logger logger = Logger.getLogger(StatementTCLCollector.class);
 	private boolean firstCycle;
 	private int commits;
 	private int rollbacks;
@@ -106,29 +109,28 @@ public class StatementTCLCollector extends AbstractCollector<StatementTCLMetric>
 				try {
 					this.loadMetric(new Object[] {dbms});
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SQLException e) {
-					System.out.println("Problem loading the StatementTCL metric value (DBMS)");
-					e.printStackTrace();
+					logger.error("Problem loading the StatementTCL metric value (DBMS)", e);
 				}
 				
 				//Creates request parameters
 				try {
 					params = this.loadRequestParams(new Date(), Integer.parseInt(dbms), 0);
 				} catch (NumberFormatException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (InvocationTargetException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (NoSuchMethodException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (SecurityException e) {
-					e.printStackTrace();
+					logger.error(e);
 				}
 				
 				//Sends the collected metric
@@ -141,9 +143,9 @@ public class StatementTCLCollector extends AbstractCollector<StatementTCLMetric>
 					}
 					EntityUtils.consume(response.getEntity());
 				} catch (ClientProtocolException e) {
-					e.printStackTrace();
+					logger.error(e);
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e);
 				}
 			}
 		}
