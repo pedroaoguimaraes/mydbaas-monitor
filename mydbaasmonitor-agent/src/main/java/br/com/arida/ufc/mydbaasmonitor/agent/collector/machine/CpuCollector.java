@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 import org.hyperic.sigar.CpuPerc;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
@@ -23,6 +24,8 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.machine.Cp
  */
 public class CpuCollector extends AbstractCollector<CpuMetric> {
 		
+	private static final Logger logger = Logger.getLogger(CpuCollector.class);
+	
 	private List<Cpu> cpuMetrics;
 	
 	public CpuCollector(int identifier, String type) {
@@ -53,8 +56,7 @@ public class CpuCollector extends AbstractCollector<CpuMetric> {
 		try {
 			this.loadMetric(new Object[] {sigar});			
 		} catch (SigarException e2) {
-			System.out.println("Problem loading the CPU metric values (Sigar)");
-			e2.printStackTrace();
+			logger.error("Problem loading the CPU metric values (Sigar)", e2);
 		}		
 		
 		//Setting the parameters of the POST request
@@ -62,20 +64,15 @@ public class CpuCollector extends AbstractCollector<CpuMetric> {
 		try {
 			params = this.loadRequestParams(new Date(), cpuMetrics, 0 , 0);
 		} catch (IllegalAccessException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (IllegalArgumentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (InvocationTargetException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (NoSuchMethodException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		} catch (SecurityException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error(e1);
 		}
 		
 		HttpResponse response;		
@@ -88,11 +85,9 @@ public class CpuCollector extends AbstractCollector<CpuMetric> {
 			}
 			EntityUtils.consume(response.getEntity());
 		} catch (ClientProtocolException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		//Release any native resources associated with this sigar instance
