@@ -11,6 +11,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.log4j.Logger;
+
 import com.google.gson.Gson;
 
 /**
@@ -21,6 +23,7 @@ import com.google.gson.Gson;
  */
 public class MyMetrics {
 	
+	private static final Logger logger = Logger.getLogger(MyMetrics.class);
 	public final static String RESOURCE_TYPE_HOST = "host";
 	public final static String RESOURCE_TYPE_VM = "machine";
 	public final static String RESOURCE_TYPE_DBMS = "dbms";
@@ -66,9 +69,9 @@ public class MyMetrics {
 			json = SendResquest.getJsonResult(response);
 			System.out.println(json);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		Class<?> metricClass = this.getMetricClass(metricName, resourceType);
@@ -107,9 +110,9 @@ public class MyMetrics {
 			json = SendResquest.getJsonResult(response);
 			System.out.println(json);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 
 		Class<?> metricClass = this.getMetricClass(metricName, resourceType);
@@ -119,17 +122,17 @@ public class MyMetrics {
 			Method jsonToListMethod = AbstractMetric.class.getDeclaredMethod("jsonToList", String.class);
 			metricList = (List<Object>) jsonToListMethod.invoke(metric, json);
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return metricList;
 	}
@@ -163,9 +166,9 @@ public class MyMetrics {
 			json = SendResquest.getJsonResult(response);
 			System.out.println(json);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 		Class<?> metricClass = this.getMetricClass(metricName, resourceType);
 		List<Object> metricList = null;
@@ -174,17 +177,17 @@ public class MyMetrics {
 			Method jsonToListMethod = AbstractMetric.class.getDeclaredMethod("jsonToList", String.class);
 			metricList = (List<Object>) jsonToListMethod.invoke(metric, json);
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return metricList;
 	}
@@ -198,7 +201,7 @@ public class MyMetrics {
 				metricClass = Class.forName("main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric."+resourceType+"."+metricName);
 			}
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		return metricClass;
 	}
