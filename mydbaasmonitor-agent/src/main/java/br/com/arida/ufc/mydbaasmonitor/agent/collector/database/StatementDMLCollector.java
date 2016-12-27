@@ -25,7 +25,7 @@ import java.sql.Connection;
  */
 public class StatementDMLCollector extends AbstractCollector<StatementDMLMetric> {
 
-	private final static Logger logger = Logger.getLogger(StatementDMLCollector.class);
+	private static final Logger logger = Logger.getLogger(StatementDMLCollector.class);
 	private boolean firstCycle;
 	private int inserts;
 	private int updates;

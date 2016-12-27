@@ -24,7 +24,7 @@ import org.apache.log4j.Logger;
  */
 public class StatementDCLCollector extends AbstractCollector<StatementDCLMetric> {
 
-	private final static Logger logger = Logger.getLogger(StatementDCLCollector.class);
+	private static final Logger logger = Logger.getLogger(StatementDCLCollector.class);
 	private boolean firstCycle;
 	private int grants;
 	private int revokes;
