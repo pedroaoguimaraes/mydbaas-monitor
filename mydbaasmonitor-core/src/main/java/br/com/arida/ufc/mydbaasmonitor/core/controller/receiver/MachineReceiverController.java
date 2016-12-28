@@ -2,6 +2,9 @@ package main.java.br.com.arida.ufc.mydbaasmonitor.core.controller.receiver;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.machine.Cpu;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.machine.Disk;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.machine.Machine;
@@ -26,6 +29,7 @@ import br.com.caelum.vraptor.view.DefaultStatus;
 @Path("/machine")
 public class MachineReceiverController extends AbstractReceiver {
 	
+	private static final Logger logger = Logger.getLogger(MachineReceiverController.class);
 	private VirtualMachineRepository machineRepository;
 	
 	/**
@@ -71,14 +75,11 @@ public class MachineReceiverController extends AbstractReceiver {
 					status.accepted();
 				}
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e);
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e);
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e);
 			}
 		}				
 	}
@@ -96,14 +97,11 @@ public class MachineReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 	
@@ -120,14 +118,11 @@ public class MachineReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 	
@@ -145,14 +140,11 @@ public class MachineReceiverController extends AbstractReceiver {
 					status.accepted();
 				}
 			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e);
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e);
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error(e);
 			}
 		}				
 	}
@@ -170,14 +162,11 @@ public class MachineReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 
