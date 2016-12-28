@@ -3,6 +3,8 @@ package main.java.br.com.arida.ufc.mydbaasmonitor.core.controller.api;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.host.DomainStatus;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.MetricRepository;
 import br.com.caelum.vraptor.Path;
@@ -21,6 +23,7 @@ import br.com.caelum.vraptor.view.Results;
 @Path("/metric")
 public class MetricController {
 
+	private static final Logger logger = Logger.getLogger(MetricController.class);
 	private Result result;
 	private MetricRepository metricRepository;
 	
@@ -53,7 +56,7 @@ public class MetricController {
 				metricClass = Class.forName("main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.host."+metricName);
 			}
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		if (queryType == MetricRepository.METRIC_MULTI_TYPE) {
@@ -66,13 +69,13 @@ public class MetricController {
 				.from(metric)
 				.serialize();
 			} catch (InstantiationException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				logger.error(e);
 			}
 		} else if (queryType == MetricRepository.METRIC_SINGLE_TYPE) {
 			try {			
@@ -84,13 +87,13 @@ public class MetricController {
 				.from(metric)
 				.serialize();
 			} catch (InstantiationException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				logger.error(e);
 			}			
 		}		
 	}
@@ -117,7 +120,7 @@ public class MetricController {
 				metricClass = Class.forName("main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric."+resourceType+"."+metricName);
 			}
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		try {			
@@ -129,13 +132,13 @@ public class MetricController {
 			.from(metric)
 			.serialize();
 		} catch (InstantiationException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 	
@@ -146,17 +149,13 @@ public class MetricController {
 		try {
 			metric = this.metricRepository.queryMetrics(sql, DomainStatus.class);
 		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		result
 		.use(Results.json())
