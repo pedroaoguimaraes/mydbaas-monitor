@@ -3,6 +3,8 @@ package main.java.br.com.arida.ufc.mydbaasmonitor.core.controller.receiver;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.database.ActiveConnection;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.database.DiskUtilization;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.database.InformationData;
@@ -31,6 +33,8 @@ import br.com.caelum.vraptor.view.DefaultStatus;
 @Path("/storage")
 public class StorageReceiverController extends AbstractReceiver {
 
+	private static final Logger logger = Logger.getLogger(StorageReceiverController.class);
+	
 	/**
 	 * Constructor
 	 * @param status
@@ -47,11 +51,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -62,11 +66,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -77,11 +81,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -92,11 +96,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -107,11 +111,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -123,11 +127,11 @@ public class StorageReceiverController extends AbstractReceiver {
 					status.accepted();
 				}
 			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				logger.error(e);
 			} catch (InvocationTargetException e) {
-				e.printStackTrace();
+				logger.error(e);
 			}
 		}				
 	}
@@ -139,11 +143,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -154,11 +158,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -169,11 +173,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -184,11 +188,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 	
@@ -199,11 +203,11 @@ public class StorageReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}		
 	}
 }
