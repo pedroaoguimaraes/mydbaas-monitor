@@ -1,7 +1,10 @@
 package main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.connection;
 
 import java.sql.Connection;  
-import javax.sql.DataSource;  
+import javax.sql.DataSource;
+
+import org.apache.log4j.Logger;
+
 import javax.naming.Context;  
 import javax.naming.InitialContext;  
 
@@ -12,6 +15,7 @@ import javax.naming.InitialContext;
 
 public class Pool {
 	
+	private static final Logger logger = Logger.getLogger(Pool.class);
 	public static final String JDBC_MySQL = "mysql/mydbaasmonitor";
 	public static final String JDBC_PostgreSQL = "postgres/mydbaasmonitor";
 	
@@ -23,7 +27,7 @@ public class Pool {
 			Context context = (Context) new InitialContext().lookup("java:comp/env");
 			connection = ((DataSource) context.lookup(selectedConnection)).getConnection();
 		} catch (Exception e) {
-			e.printStackTrace(System.err);  
+			logger.error(e);
 		}
 		return connection;  
 	}
