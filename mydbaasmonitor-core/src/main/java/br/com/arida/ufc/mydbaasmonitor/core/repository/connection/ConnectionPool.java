@@ -4,9 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.apache.log4j.Logger;
+
 
 public class ConnectionPool {
 
+	private static final Logger logger = Logger.getLogger(ConnectionPool.class);
 	private static ConnectionPool uniqueInstance;
 	private String schema;
 	private int port;
@@ -54,14 +57,12 @@ public class ConnectionPool {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			System.out.println("The MySQL driver can not be loaded!");
-			e.printStackTrace();
+			logger.error("The MySQL driver can not be loaded!", e);
 		}
 		try {
 			connection = DriverManager.getConnection("jdbc:mysql://localhost:"+port+"/"+schema, username, password);
 		} catch (SQLException e) {
-			System.out.println("Unable to connect to the database!");
-			e.printStackTrace();
+			logger.error("Unable to connect to the database!", e);
 		}
 		return connection;
 	}
