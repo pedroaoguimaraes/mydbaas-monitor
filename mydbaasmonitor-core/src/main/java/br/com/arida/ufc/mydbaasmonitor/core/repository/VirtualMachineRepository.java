@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.machine.Machine;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.Host;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.VirtualMachine;
@@ -24,6 +27,7 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class VirtualMachineRepository implements GenericRepository<VirtualMachine>{
 	
+	private static final Logger logger = Logger.getLogger(VirtualMachineRepository.class);
 	private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
@@ -41,8 +45,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 				virtualMachinesList.add(virtualMachine);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -66,8 +70,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 				virtualMachinesList.add(virtualMachine);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -91,8 +95,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 				machines.add(virtualMachine);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -116,8 +120,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 				virtualMachine = getEntity(resultSet);	
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -153,8 +157,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			
 			this.preparedStatement.executeUpdate();
 		} 
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -181,8 +185,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			
 			this.preparedStatement.executeUpdate();
 		} 
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -211,8 +215,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -238,8 +242,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -270,8 +274,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			this.preparedStatement.executeUpdate();
 			return true;
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -293,8 +297,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -315,8 +319,8 @@ public class VirtualMachineRepository implements GenericRepository<VirtualMachin
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
