@@ -3,6 +3,9 @@ package main.java.br.com.arida.ufc.mydbaasmonitor.core.controller.web;
 import static main.java.br.com.arida.ufc.mydbaasmonitor.core.util.Utils.i18n;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBMS;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.Host;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.VirtualMachine;
@@ -26,6 +29,7 @@ import br.com.caelum.vraptor.Result;
 @Path("/agent")
 public class AgentController {
 
+	private static final Logger logger = Logger.getLogger(AgentController.class);
 	private Result result;
 	private VirtualMachineRepository virtualMachineRepository;
 	private DBMSRepository dbmsRepository;
@@ -89,19 +93,19 @@ public class AgentController {
 					resultAgent = true;
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+					logger.error(e);
 				}				
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		//Checks whether the agent was sent and configured
@@ -186,15 +190,15 @@ public class AgentController {
 				resultAgent = monitoringCoordinator.stopAgentEnvironment(host);
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SecurityException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		//Checks whether the agent was sent and configured
