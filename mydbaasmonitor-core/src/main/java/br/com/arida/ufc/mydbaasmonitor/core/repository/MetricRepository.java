@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import com.sun.xml.internal.ws.util.StringUtils;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.common.AbstractMetric;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.connection.Pool;
@@ -32,7 +35,8 @@ public class MetricRepository {
 	public static final int METRIC_SINGLE_TYPE = 0;
 	public static final int METRIC_MULTI_TYPE = 1;
 	public static final int METRIC_NO_TYPE = 2;
-	
+
+	private static final Logger logger = Logger.getLogger(MetricRepository.class);
 	private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
@@ -104,8 +108,8 @@ public class MetricRepository {
 			this.preparedStatement.executeUpdate();
 			return true;
 		} 
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -130,8 +134,8 @@ public class MetricRepository {
 			this.tables.add(metric.getClass().getSimpleName().toLowerCase()+"_metric");
 			return true;
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -290,8 +294,8 @@ public class MetricRepository {
 				tables.add(resultSet.getString("table_name"));
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -321,8 +325,8 @@ public class MetricRepository {
 				objectMetric = getMetricEntity(metricClass, resultSet);	
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -353,8 +357,8 @@ public class MetricRepository {
 				listMetrics.add(metricClass.cast(objectMetric));
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
