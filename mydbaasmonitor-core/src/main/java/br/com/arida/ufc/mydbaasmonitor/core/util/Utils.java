@@ -9,14 +9,18 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.log4j.Logger;
+
 public class Utils {
+	
+	private static final Logger logger = Logger.getLogger(Utils.class);
 	
 	public static String decoderText(String text) {
 		try {
 			byte[] bytes = text.getBytes("ISO-8859-1");
 			text = new String(bytes, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error(e);
 			return text;
 		}
 
@@ -36,9 +40,9 @@ public class Utils {
 
 			return hexBuild.toString();
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 
 		return text;
