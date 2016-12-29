@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import br.com.caelum.vraptor.ioc.Component;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.host.HostInfo;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBaaS;
@@ -23,6 +26,7 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.core.util.DataUtil;
 @Component
 public class HostRepository implements GenericRepository<Host> {
 	
+	private static final Logger logger = Logger.getLogger(HostRepository.class);
 	private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
@@ -40,8 +44,8 @@ public class HostRepository implements GenericRepository<Host> {
 				hostList.add(host);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -64,8 +68,8 @@ public class HostRepository implements GenericRepository<Host> {
 				hostList.add(host);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -89,8 +93,8 @@ public class HostRepository implements GenericRepository<Host> {
 				host = getEntity(resultSet);	
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -124,8 +128,8 @@ public class HostRepository implements GenericRepository<Host> {
 			
 			this.preparedStatement.executeUpdate();
 		} 
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -153,8 +157,8 @@ public class HostRepository implements GenericRepository<Host> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -175,8 +179,8 @@ public class HostRepository implements GenericRepository<Host> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -205,8 +209,8 @@ public class HostRepository implements GenericRepository<Host> {
 			this.preparedStatement.executeUpdate();
 			return true;
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
