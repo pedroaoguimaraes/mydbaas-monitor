@@ -10,6 +10,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBMS;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.common.AbstractEntity;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.common.GenericResource;
@@ -25,7 +28,8 @@ import com.jcraft.jsch.Session;
  * @since June 3, 2013
  */
 public class MonitoringCoordinator {
-	
+
+	private static final Logger logger = Logger.getLogger(MonitoringCoordinator.class);
 	/**
 	 * Method to check ssh connection for a given resource
 	 * @param address
@@ -39,7 +43,7 @@ public class MonitoringCoordinator {
 		try {
 			session = SSHController.getInstance().createSession(address, username, password, port);
 		} catch (JSchException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		if (session != null && session.isConnected()) {
 			return true;
@@ -270,7 +274,7 @@ public class MonitoringCoordinator {
 			writer.write(agentContext);
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 		
@@ -282,7 +286,7 @@ public class MonitoringCoordinator {
             DateFormat formatter = new SimpleDateFormat("ddMMyyyyHHmmss"); 
             result = formatter.format(date);   
         } catch (Exception e) {               
-            System.err.println(e.getMessage());
+            logger.error(e);
         }   
         return result;   
 	}	
