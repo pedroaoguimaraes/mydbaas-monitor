@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import br.com.caelum.vraptor.ioc.Component;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBMS;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.VirtualMachine;
@@ -22,6 +25,7 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.core.util.DataUtil;
 @Component
 public class DBMSRepository implements GenericRepository<DBMS> {
 
+	private static final Logger logger = Logger.getLogger(DBMSRepository.class);
 	private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
@@ -39,8 +43,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 				dbmsList.add(dbms);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -64,8 +68,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 				dbmsList.add(dbms);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -88,8 +92,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 				dbms = getEntity(resultSet);	
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -124,8 +128,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 			
 			this.preparedStatement.executeUpdate();
 		} 
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -154,8 +158,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -176,8 +180,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -198,8 +202,8 @@ public class DBMSRepository implements GenericRepository<DBMS> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
