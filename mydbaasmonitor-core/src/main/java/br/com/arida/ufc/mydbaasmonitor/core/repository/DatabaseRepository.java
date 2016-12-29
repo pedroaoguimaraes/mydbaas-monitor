@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBMS;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.Database;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.common.GenericRepository;
@@ -22,6 +25,7 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class DatabaseRepository implements GenericRepository<Database> {
 	
+	private static final Logger logger = Logger.getLogger(DatabaseRepository.class);
 	private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
@@ -39,8 +43,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 				databaseList.add(database);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -63,8 +67,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 				databases.add(database);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -88,8 +92,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 				database = getEntity(resultSet);	
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -120,8 +124,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 			
 			this.preparedStatement.executeUpdate();
 		} 
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -146,8 +150,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -168,8 +172,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -190,8 +194,8 @@ public class DatabaseRepository implements GenericRepository<Database> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
