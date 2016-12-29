@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBaaS;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.common.GenericRepository;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.connection.Pool;
@@ -21,6 +24,7 @@ import br.com.caelum.vraptor.ioc.Component;
 @Component
 public class DBaaSRepository implements GenericRepository<DBaaS> {
 
+	private static final Logger logger = Logger.getLogger(DBaaSRepository.class);
 	private Connection connection = null;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
@@ -38,8 +42,8 @@ public class DBaaSRepository implements GenericRepository<DBaaS> {
 				dBaaSList.add(dBaaS);
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -63,8 +67,8 @@ public class DBaaSRepository implements GenericRepository<DBaaS> {
 				dBaaS = getEntity(resultSet);	
 			}
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) {}
             try { preparedStatement.close(); } catch(Exception e) {}
@@ -92,8 +96,8 @@ public class DBaaSRepository implements GenericRepository<DBaaS> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
             try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
@@ -116,8 +120,8 @@ public class DBaaSRepository implements GenericRepository<DBaaS> {
 			
 			this.preparedStatement.executeUpdate();
 		}
-		catch(SQLException se) {se.printStackTrace();}
-		catch (RuntimeException re) {re.printStackTrace();}
+		catch(SQLException se) {logger.error(se);}
+		catch (RuntimeException re) {logger.error(re);}
 		finally {
 			try { resultSet.close(); } catch(Exception e) { }
             try { preparedStatement.close(); } catch(Exception e) { }
