@@ -9,11 +9,13 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 
 public class MyDriverClient {
 
+	private static final Logger logger = Logger.getLogger(MyDriverClient.class);
 	private String serverUrl;
 	
 	/**
@@ -33,9 +35,9 @@ public class MyDriverClient {
 		try {
 			response = SendResquest.postRequest(this.serverUrl+"/pool/connection", null, "UTF-8");
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		if (response!= null && response.getStatusLine().getStatusCode() != 200) {
 			return true;
@@ -52,9 +54,9 @@ public class MyDriverClient {
 			response = SendResquest.postRequest(this.serverUrl+"/resource/find", params, "UTF-8");
 			json = SendResquest.getJsonResult(response);
 		} catch (ClientProtocolException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		Gson gson = new Gson();
 		Database database = gson.fromJson(json, Database.class);
