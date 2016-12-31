@@ -1,6 +1,9 @@
 package main.java.br.com.arida.ufc.mydbaasmonitor.core.controller.receiver;
 
 import java.lang.reflect.InvocationTargetException;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.database.WorkloadStatus;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.controller.receiver.common.AbstractReceiver;
 import main.java.br.com.arida.ufc.mydbaasmonitor.core.repository.MetricRepository;
@@ -13,6 +16,8 @@ import br.com.caelum.vraptor.view.DefaultStatus;
 @Path("/workload")
 public class WorkloadReceiverController extends AbstractReceiver {
 
+	private static final Logger logger = Logger.getLogger(WorkloadReceiverController.class);
+	
 	public WorkloadReceiverController(DefaultStatus status, MetricRepository repository) {
 		super(status, repository);
 	}
@@ -24,11 +29,11 @@ public class WorkloadReceiverController extends AbstractReceiver {
 				status.accepted();
 			}
 		} catch (NoSuchMethodException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (IllegalAccessException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 	}
 }
