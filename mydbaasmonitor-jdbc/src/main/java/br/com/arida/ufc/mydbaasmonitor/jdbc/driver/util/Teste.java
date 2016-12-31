@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import org.apache.log4j.Logger;
+
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.metric.database.WorkloadStatus;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.DBMS;
 import main.java.br.com.arida.ufc.mydbaasmonitor.common.entity.resource.Database;
@@ -15,6 +18,8 @@ import main.java.br.com.arida.ufc.mydbaasmonitor.jdbc.driver.collector.WorkloadS
 
 
 public class Teste {
+	
+	private static final Logger logger = Logger.getLogger(Teste.class);
 	
 	public static String formatDate(Date date) {
 		String formatedDate;
@@ -63,11 +68,11 @@ public class Teste {
 		try {
 			objects = workloadStatusCollector.executeQuery(database, sql4);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		WorkloadStatus workloadStatus1 = (WorkloadStatus) objects[3];
@@ -94,11 +99,11 @@ public class Teste {
 		try {
 			objects1 = workloadStatusCollector.executeQuery(database, sql5);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		WorkloadStatus workloadStatus2 = (WorkloadStatus) objects1[3];
@@ -124,11 +129,11 @@ public class Teste {
 		try {
 			objects2 = workloadStatusCollector.executeQuery(database, sql6);
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.error(e);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		WorkloadStatus workloadStatus3 = (WorkloadStatus) objects2[3];
